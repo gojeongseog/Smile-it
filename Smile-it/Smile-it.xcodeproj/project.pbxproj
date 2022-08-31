@@ -9,29 +9,33 @@
 /* Begin PBXBuildFile section */
 		D7061EAC28BDE91900D3746A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7061EAB28BDE91900D3746A /* AppDelegate.swift */; };
 		D7061EAE28BDE91900D3746A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7061EAD28BDE91900D3746A /* SceneDelegate.swift */; };
-		D7061EB028BDE91900D3746A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7061EAF28BDE91900D3746A /* MainViewController.swift */; };
+		D7061EB028BDE91900D3746A /* PostCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7061EAF28BDE91900D3746A /* PostCollectionVC.swift */; };
 		D7061EB328BDE91900D3746A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7061EB128BDE91900D3746A /* Main.storyboard */; };
 		D7061EB628BDE91900D3746A /* Smile_it.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7061EB428BDE91900D3746A /* Smile_it.xcdatamodeld */; };
 		D7061EB828BDE91A00D3746A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7061EB728BDE91A00D3746A /* Assets.xcassets */; };
 		D7061EBB28BDE91A00D3746A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7061EB928BDE91A00D3746A /* LaunchScreen.storyboard */; };
-		D7061F1928BDFBC600D3746A /* SmileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7061F1828BDFBC600D3746A /* SmileViewController.swift */; };
+		D7061F1928BDFBC600D3746A /* SmileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7061F1828BDFBC600D3746A /* SmileVC.swift */; };
 		D7F7056828BE611100847CD2 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7056728BE611100847CD2 /* PostModel.swift */; };
 		D7F7056A28BF12B300847CD2 /* TopMostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7056928BF12B300847CD2 /* TopMostView.swift */; };
+		D7F7056C28BF806E00847CD2 /* PostCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */; };
+		D7F7056E28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D7061EA828BDE91900D3746A /* Smile-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smile-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7061EAB28BDE91900D3746A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7061EAD28BDE91900D3746A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D7061EAF28BDE91900D3746A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D7061EAF28BDE91900D3746A /* PostCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionVC.swift; sourceTree = "<group>"; };
 		D7061EB228BDE91900D3746A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7061EB528BDE91900D3746A /* Smile_it.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Smile_it.xcdatamodel; sourceTree = "<group>"; };
 		D7061EB728BDE91A00D3746A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7061EBA28BDE91A00D3746A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7061EBC28BDE91A00D3746A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7061F1828BDFBC600D3746A /* SmileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileViewController.swift; sourceTree = "<group>"; };
+		D7061F1828BDFBC600D3746A /* SmileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileVC.swift; sourceTree = "<group>"; };
 		D7F7056728BE611100847CD2 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		D7F7056928BF12B300847CD2 /* TopMostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMostView.swift; sourceTree = "<group>"; };
+		D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCustomCollectionViewCell.xib; sourceTree = "<group>"; };
+		D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCustomCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +70,12 @@
 			children = (
 				D7061EAB28BDE91900D3746A /* AppDelegate.swift */,
 				D7061EAD28BDE91900D3746A /* SceneDelegate.swift */,
-				D7061EAF28BDE91900D3746A /* MainViewController.swift */,
+				D7061EAF28BDE91900D3746A /* PostCollectionVC.swift */,
+				D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */,
+				D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */,
 				D7061EB128BDE91900D3746A /* Main.storyboard */,
 				D7F7056728BE611100847CD2 /* PostModel.swift */,
-				D7061F1828BDFBC600D3746A /* SmileViewController.swift */,
+				D7061F1828BDFBC600D3746A /* SmileVC.swift */,
 				D7F7056928BF12B300847CD2 /* TopMostView.swift */,
 				D7061EB728BDE91A00D3746A /* Assets.xcassets */,
 				D7061EB928BDE91A00D3746A /* LaunchScreen.storyboard */,
@@ -139,6 +145,7 @@
 			files = (
 				D7061EBB28BDE91A00D3746A /* LaunchScreen.storyboard in Resources */,
 				D7061EB828BDE91A00D3746A /* Assets.xcassets in Resources */,
+				D7F7056C28BF806E00847CD2 /* PostCustomCollectionViewCell.xib in Resources */,
 				D7061EB328BDE91900D3746A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,11 +158,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7F7056A28BF12B300847CD2 /* TopMostView.swift in Sources */,
-				D7061EB028BDE91900D3746A /* MainViewController.swift in Sources */,
+				D7F7056E28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift in Sources */,
+				D7061EB028BDE91900D3746A /* PostCollectionVC.swift in Sources */,
 				D7F7056828BE611100847CD2 /* PostModel.swift in Sources */,
 				D7061EAC28BDE91900D3746A /* AppDelegate.swift in Sources */,
 				D7061EAE28BDE91900D3746A /* SceneDelegate.swift in Sources */,
-				D7061F1928BDFBC600D3746A /* SmileViewController.swift in Sources */,
+				D7061F1928BDFBC600D3746A /* SmileVC.swift in Sources */,
 				D7061EB628BDE91900D3746A /* Smile_it.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 import UIKit
 import ARKit
 
-class SmileViewController: UIViewController {
+class SmileVC: UIViewController {
     let trackingView = ARSCNView()
     
     var backgroundImageView: UIImageView = {
@@ -39,11 +39,11 @@ class SmileViewController: UIViewController {
         return imageView
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        view.backgroundColor = .systemBackground
         setupImageView()
         
         // AR face tracking 지원하는지 확인
@@ -72,7 +72,6 @@ class SmileViewController: UIViewController {
         view.addSubview(leftEyeImageView)
         view.addSubview(rightEyeImageView)
         
-        
         NSLayoutConstraint.activate([
             backgroundImageView.widthAnchor.constraint(equalToConstant: view.bounds.width),
             backgroundImageView.heightAnchor.constraint(equalToConstant: view.bounds.height),
@@ -92,10 +91,6 @@ class SmileViewController: UIViewController {
             rightEyeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             rightEyeImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        
-        
-        
-        
     }
     
     func setupSmile() {
@@ -126,8 +121,6 @@ class SmileViewController: UIViewController {
                     self.dismiss(animated: true)
                 })
             })
-            
-
             
             // 웃음
         case _ where smileValue > 0.2:
@@ -180,8 +173,7 @@ class SmileViewController: UIViewController {
 
 // MARK: -Smile tracking
 
-extension SmileViewController: ARSCNViewDelegate {
-    
+extension SmileVC: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         
         guard let faceAnchor = anchor as? ARFaceAnchor else { return }
@@ -207,11 +199,5 @@ extension SmileViewController: ARSCNViewDelegate {
                 self.mouthImageView.image = UIImage(named: "LsmileMouth")
             }
         }
-        
-        
     }
-    
-    
 }
-
-

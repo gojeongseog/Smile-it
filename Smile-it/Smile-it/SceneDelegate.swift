@@ -29,10 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        let smileVC = SmileViewController()
+        let smileVC = SmileVC()
         let topMostViewController = UIApplication.shared.topMostViewController()
         
-        if !(topMostViewController is SmileViewController) {
+        if !(topMostViewController is SmileVC) {
             smileVC.modalPresentationStyle = .fullScreen
             topMostViewController?.present(smileVC, animated: false)
         } else {
