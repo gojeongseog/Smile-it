@@ -11,12 +11,12 @@ import ARKit
 class SmileViewController: UIViewController {
     let trackingView = ARSCNView()
     
-//    var backgroundImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.image = UIImage(named: "smileBackground")
-//        return imageView
-//    }()
+    var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "smileBackground")
+        return imageView
+    }()
     
     var mouthImageView: UIImageView = {
         let imageView = UIImageView()
@@ -67,15 +67,15 @@ class SmileViewController: UIViewController {
     }
     
     func setupImageView() {
-//        view.addSubview(backgroundImageView)
+        view.addSubview(backgroundImageView)
         view.addSubview(mouthImageView)
         view.addSubview(leftEyeImageView)
         view.addSubview(rightEyeImageView)
         
         
         NSLayoutConstraint.activate([
-//            backgroundImageView.widthAnchor.constraint(equalToConstant: view.bounds.width),
-//            backgroundImageView.heightAnchor.constraint(equalToConstant: view.bounds.height),
+            backgroundImageView.widthAnchor.constraint(equalToConstant: view.bounds.width),
+            backgroundImageView.heightAnchor.constraint(equalToConstant: view.bounds.height),
             
             mouthImageView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
             mouthImageView.heightAnchor.constraint(equalToConstant:  view.bounds.width / 2),
@@ -116,12 +116,18 @@ class SmileViewController: UIViewController {
             // dismiss 될때 애니메이션 실행
             mouthImageView.image = UIImage(named: "HsmileMouth")
             
-//            UIView.animate(withDuration: 2, delay: 0, animations: {
-//                self.backgroundImageView.alpha = 0
-//            }, completion: {finished in
-//                self.modalTransitionStyle = .crossDissolve
-//                self.dismiss(animated: true)
-//            })
+            UIView.animate(withDuration: 5.0, animations: {
+                
+                // 실행될 애니메이션
+                
+            }, completion: { finished in
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.modalTransitionStyle = .crossDissolve
+                    self.dismiss(animated: true)
+                })
+            })
+            
+
             
             // 웃음
         case _ where smileValue > 0.2:
