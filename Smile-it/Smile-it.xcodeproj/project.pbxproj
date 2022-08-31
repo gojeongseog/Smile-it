@@ -71,11 +71,10 @@
 				D7061EAB28BDE91900D3746A /* AppDelegate.swift */,
 				D7061EAD28BDE91900D3746A /* SceneDelegate.swift */,
 				D7061EAF28BDE91900D3746A /* PostCollectionVC.swift */,
-				D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */,
-				D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */,
-				D7061EB128BDE91900D3746A /* Main.storyboard */,
-				D7F7056728BE611100847CD2 /* PostModel.swift */,
 				D7061F1828BDFBC600D3746A /* SmileVC.swift */,
+				D7F7056F28BFA34A00847CD2 /* View */,
+				D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */,
+				D7F7056728BE611100847CD2 /* PostModel.swift */,
 				D7F7056928BF12B300847CD2 /* TopMostView.swift */,
 				D7061EB728BDE91A00D3746A /* Assets.xcassets */,
 				D7061EB928BDE91A00D3746A /* LaunchScreen.storyboard */,
@@ -83,6 +82,15 @@
 				D7061EB428BDE91900D3746A /* Smile_it.xcdatamodeld */,
 			);
 			path = "Smile-it";
+			sourceTree = "<group>";
+		};
+		D7F7056F28BFA34A00847CD2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */,
+				D7061EB128BDE91900D3746A /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

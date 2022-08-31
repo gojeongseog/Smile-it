@@ -11,6 +11,8 @@ class PostCollectionVC: UIViewController {
     
     @IBOutlet weak var postCollectionView: UICollectionView!
     
+    fileprivate let postits = ["postit1", "postit2", "postit3", "postit4"]
+    
     fileprivate let systemImageNameArray = [
         "moon", "zzz", "sparkles", "cloud", "tornado", "smoke.fill", "tv.fill", "gamecontroller", "headphones", "flame", "bolt.fill", "timer", "tortoise", "moon", "zzz", "sparkles", "cloud", "tornado", "smoke.fill", "tv.fill", "gamecontroller", "headphones", "flame", "bolt.fill", "here", "tortoise", "moon", "zzz", "sparkles", "cloud", "staroflife", "smoke.fill", "bag", "cart", "creditcard", "clock", "alarm", "stopwatch.fill", "timer",
     ]
@@ -92,7 +94,7 @@ extension PostCollectionVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostCustomCollectionViewCell.self), for: indexPath) as! PostCustomCollectionViewCell
         let item = systemImageNameArray[indexPath.item]
         cell.profileLabel.text = item
-        cell.profileImage.image = UIImage(named: "postit")
+        cell.profileImage.image = UIImage(named: postits.randomElement()!)
         return cell
     }
 }
