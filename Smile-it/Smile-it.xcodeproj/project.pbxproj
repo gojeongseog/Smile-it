@@ -18,6 +18,7 @@
 		D7571CA828C0D2CF005FAE0F /* PostItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571CA628C0D2CF005FAE0F /* PostItem+CoreDataClass.swift */; };
 		D7571CA928C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571CA728C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift */; };
 		D7571CAB28C0E8DA005FAE0F /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571CAA28C0E8DA005FAE0F /* WriteDiaryVC.swift */; };
+		D7D8643928C23ACC00E055A1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8643828C23ACC00E055A1 /* BaseViewController.swift */; };
 		D7F7056A28BF12B300847CD2 /* TopMostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7056928BF12B300847CD2 /* TopMostView.swift */; };
 		D7F7056C28BF806E00847CD2 /* PostCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */; };
 		D7F7056E28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */; };
@@ -37,6 +38,7 @@
 		D7571CA628C0D2CF005FAE0F /* PostItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D7571CA728C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D7571CAA28C0E8DA005FAE0F /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
+		D7D8643828C23ACC00E055A1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D7F7056928BF12B300847CD2 /* TopMostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMostView.swift; sourceTree = "<group>"; };
 		D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCustomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				D7F7056928BF12B300847CD2 /* TopMostView.swift */,
+				D7D8643828C23ACC00E055A1 /* BaseViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			files = (
 				D7571CA828C0D2CF005FAE0F /* PostItem+CoreDataClass.swift in Sources */,
 				D7F7056A28BF12B300847CD2 /* TopMostView.swift in Sources */,
+				D7D8643928C23ACC00E055A1 /* BaseViewController.swift in Sources */,
 				D7571CAB28C0E8DA005FAE0F /* WriteDiaryVC.swift in Sources */,
 				D7F7056E28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift in Sources */,
 				D7061EB028BDE91900D3746A /* PostCollectionVC.swift in Sources */,

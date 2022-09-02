@@ -66,6 +66,8 @@ class SmileVC: UIViewController {
         }
     }
     
+    
+    
     func setupImageView() {
         view.addSubview(backgroundImageView)
         view.addSubview(mouthImageView)
@@ -96,10 +98,8 @@ class SmileVC: UIViewController {
     func setupSmile() {
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
-        
         trackingView.session.run(configuration)
         trackingView.delegate = self
-        
         view.addSubview(trackingView)
     }
     
