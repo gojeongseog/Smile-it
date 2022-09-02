@@ -10,15 +10,18 @@ import UIKit
 class PostCollectionVC: UIViewController {
     
     @IBOutlet weak var postCollectionView: UICollectionView!
-    
-    fileprivate let postits = ["postit1", "postit2", "postit3", "postit4"]
-    
-    fileprivate let systemImageNameArray = [
-        "moon", "zzz", "sparkles", "cloud", "tornado", "smoke.fill", "tv.fill", "gamecontroller", "headphones", "flame", "bolt.fill", "timer", "tortoise", "moon", "zzz", "sparkles", "cloud", "tornado", "smoke.fill", "tv.fill", "gamecontroller", "headphones", "flame", "bolt.fill", "here", "tortoise", "moon", "zzz", "sparkles", "cloud", "staroflife", "smoke.fill", "bag", "cart", "creditcard", "clock", "alarm", "stopwatch.fill", "timer",
-    ]
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    fileprivate let postits = ["postitYellow1", "postitYellow2", "PostItRed3", "PostItRed4", "PostItGreen1", "PostItGreen2", "PostItBlue2", "PostItBlue3"]
+    fileprivate var postItems = [PostItem]()
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let image = UIImage(named: "title")
+            navigationItem.titleView = UIImageView(image: image)
+        
+        
         
         // 콜렉션 뷰에 대한 설정
         postCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -34,6 +37,12 @@ class PostCollectionVC: UIViewController {
         // 컬렉션뷰의 레이아웃 설정
         self.postCollectionView.collectionViewLayout = createCompositionalLayout()
         
+    }
+    @IBAction func addButton(_ sender: UIButton) {
+        createItem(content: "안녕 테스트", color: "yellow")
+        postCollectionView.reloadData()
+        let writeDiaryVC = WriteDiaryVC()
+        self.navigationController?.pushViewController(writeDiaryVC, animated: true)
     }
 }
 
@@ -86,14 +95,14 @@ extension PostCollectionVC {
 extension PostCollectionVC: UICollectionViewDataSource {
     // 각 섹션에 들어가는 아이템 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return systemImageNameArray.count
+        return postItems.count
     }
     
     // 각 콜렉션뷰 셀에 대한 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostCustomCollectionViewCell.self), for: indexPath) as! PostCustomCollectionViewCell
-        let item = systemImageNameArray[indexPath.item]
-        cell.profileLabel.text = item
+        let Item = postItems[indexPath.item]
+        cell.profileLabel.text = Item.content
         cell.profileImage.image = UIImage(named: postits.randomElement()!)
         return cell
     }
@@ -103,4 +112,59 @@ extension PostCollectionVC: UICollectionViewDelegate {
     
 }
 
-
+// Core Data
+extension PostCollectionVC {
+    func getAllItems() {
+        do {
+            postItems = try context.fetch(PostItem.fetchRequest())
+            DispatchQueue.main.async {
+                self.postCollectionView.reloadData()
+            }
+        }
+        catch {
+            // error
+        }
+    }
+    
+    func createItem(content: String, color: String) {
+        let newItem = PostItem(context: context)
+        newItem.content = content
+        newItem.date = Date()
+        newItem.color = color
+        
+        do {
+            try context.save()
+            getAllItems()
+        }
+        catch {
+            
+        }
+        
+    }
+    
+    func deleteItem(item: PostItem) {
+        context.delete(item)
+        
+        do {
+            try context.save()
+            getAllItems()
+        }
+        catch {
+            
+        }
+    }
+    
+    func upateItem(item: PostItem, newContent: String, newColor: String) {
+        
+        item.content = newContent
+        item.color = newColor
+        item.date = Date()
+        do {
+            try context.save()
+            getAllItems()
+        }
+        catch {
+            
+        }
+    }
+}
