@@ -8,43 +8,16 @@
 import UIKit
 import ARKit
 
-class SmileVC: UIViewController {
+class SmileVC: BaseViewController {
     let trackingView = ARSCNView()
-    
-    var backgroundImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "smileBackground")
-        return imageView
-    }()
-    
-    var mouthImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "LsmileMouth")
-        return imageView
-    }()
-    
-    var leftEyeImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "Lclose")
-        return imageView
-    }()
-    
-    var rightEyeImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "Rclose")
-        return imageView
-    }()
+    lazy var backgroundImageView = setupImage(imageName: "smileBackground")
+    lazy var mouthImageView = setupImage(imageName: "LsmileMouth")
+    lazy var leftEyeImageView = setupImage(imageName: "Lclose")
+    lazy var rightEyeImageView = setupImage(imageName: "Rclose")
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        view.backgroundColor = .systemBackground
-        setupImageView()
         
         // AR face tracking 지원하는지 확인
         guard ARFaceTrackingConfiguration.isSupported else {
@@ -66,28 +39,26 @@ class SmileVC: UIViewController {
         }
     }
     
-    
-    
-    func setupImageView() {
+    override func setupLayout() {
+        view.addSubview(trackingView)
         view.addSubview(backgroundImageView)
         view.addSubview(mouthImageView)
         view.addSubview(leftEyeImageView)
         view.addSubview(rightEyeImageView)
-        
+    }
+    
+    override func setupConstraints() {
         NSLayoutConstraint.activate([
             backgroundImageView.widthAnchor.constraint(equalToConstant: view.bounds.width),
             backgroundImageView.heightAnchor.constraint(equalToConstant: view.bounds.height),
-            
             mouthImageView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
             mouthImageView.heightAnchor.constraint(equalToConstant:  view.bounds.width / 2),
             mouthImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mouthImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
             leftEyeImageView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
             leftEyeImageView.heightAnchor.constraint(equalToConstant:  view.bounds.width / 2),
             leftEyeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             leftEyeImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
             rightEyeImageView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
             rightEyeImageView.heightAnchor.constraint(equalToConstant:  view.bounds.width / 2),
             rightEyeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -95,12 +66,18 @@ class SmileVC: UIViewController {
         ])
     }
     
+    func setupImage(imageName: String) -> UIImageView {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: imageName)
+        return image
+    }
+    
     func setupSmile() {
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
         trackingView.session.run(configuration)
         trackingView.delegate = self
-        view.addSubview(trackingView)
     }
     
     func handleSmile(smileValue: CGFloat) {
@@ -109,7 +86,7 @@ class SmileVC: UIViewController {
             // 활짝 웃음
         case _ where smileValue > 0.5:
             // dismiss 될때 애니메이션 실행
-            mouthImageView.image = UIImage(named: "HsmileMouth")
+//            mouthImageView.image = UIImage(named: "HsmileMouth")
             
             UIView.animate(withDuration: 5.0, animations: {
                 
@@ -125,12 +102,12 @@ class SmileVC: UIViewController {
             // 웃음
         case _ where smileValue > 0.2:
             mouthImageView.image = UIImage(named: "MsmileMouth")
-            print("웃음")
+//            print("웃음")
             
             // 안웃음
         default:
             mouthImageView.image = UIImage(named: "LsmileMouth")
-            print("안웃음")
+//            print("안웃음")
         }
     }
     
@@ -139,34 +116,34 @@ class SmileVC: UIViewController {
             // 왼쪽 눈 뜸
         case _ where leftValue < 0.5:
             leftEyeImageView.image = UIImage(named: "Lopen")
-            print("왼쪽 눈 뜸")
+//            print("왼쪽 눈 뜸")
             
             // 왼쪽 눈 감음
         case _ where leftValue > 0.5:
             leftEyeImageView.image = UIImage(named: "Lclose")
-            print("왼쪽 눈 감음")
+//            print("왼쪽 눈 감음")
             
             // 왼쪽눈 기본
         default:
             leftEyeImageView.image = UIImage(named: "Lclose")
-            print("왼쪽눈 기본")
+//            print("왼쪽눈 기본")
         }
         
         switch rightValue {
             // 오른쪽 눈 뜸
         case _ where rightValue < 0.5:
             rightEyeImageView.image = UIImage(named: "Ropen")
-            print("오른쪽 눈 뜸")
+//            print("오른쪽 눈 뜸")
             
             // 오른쪽 눈 감음
         case _ where rightValue > 0.5:
             rightEyeImageView.image = UIImage(named: "Rclose")
-            print("오른쪽 눈 감음")
+//            print("오른쪽 눈 감음")
             
             // 오른쪽 눈 기본
         default:
             rightEyeImageView.image = UIImage(named: "Rclose")
-            print("오른쪽 눈 기본")
+//            print("오른쪽 눈 기본")
         }
     }
 }
@@ -186,7 +163,7 @@ extension SmileVC: ARSCNViewDelegate {
         let rightEyeBlinkValue = faceAnchor.blendShapes[.eyeBlinkRight] as! CGFloat
         
         // 트래킹 중인지 확인
-        if (faceAnchor.isTracked) {
+        if faceAnchor.isTracked {
             DispatchQueue.main.async {
                 self.handleSmile(smileValue: (leftMouthSmileValue + rightMouthSmileValue) / 2.0)
                 

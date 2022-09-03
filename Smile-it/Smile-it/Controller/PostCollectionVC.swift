@@ -7,21 +7,30 @@
 
 import UIKit
 
-class PostCollectionVC: UIViewController {
+class PostCollectionVC: BaseViewController {
     
     @IBOutlet weak var postCollectionView: UICollectionView!
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     fileprivate let postits = ["postitYellow1", "postitYellow2", "PostItRed3", "PostItRed4", "PostItGreen1", "PostItGreen2", "PostItBlue2", "PostItBlue3"]
-    fileprivate var postItems = [PostItem]()
- 
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        CoreDataManager.shared.getItem()
+        self.postCollectionView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("실행")
+//        CoreDataManager.shared.getItem()
+//        self.postCollectionView.reloadData()
         
+        // 네비게이션 타이틀 이미지
         let image = UIImage(named: "title")
             navigationItem.titleView = UIImageView(image: image)
-        
-        
+    }
+    
+    override func setupLayout() {
         
         // 콜렉션 뷰에 대한 설정
         postCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -36,10 +45,14 @@ class PostCollectionVC: UIViewController {
         
         // 컬렉션뷰의 레이아웃 설정
         self.postCollectionView.collectionViewLayout = createCompositionalLayout()
+    }
+    @IBAction func deleteButton(_ sender: UIButton) {
         
     }
+    
     @IBAction func addButton(_ sender: UIButton) {
-        createItem(content: "안녕 테스트", color: "yellow")
+//        CoreDataManager.shared.createItem(content: "안녕 테스트", color: "PostItBlue4")
+        CoreDataManager.shared.getItem()
         postCollectionView.reloadData()
         let writeDiaryVC = WriteDiaryVC()
         self.navigationController?.pushViewController(writeDiaryVC, animated: true)
@@ -95,76 +108,29 @@ extension PostCollectionVC {
 extension PostCollectionVC: UICollectionViewDataSource {
     // 각 섹션에 들어가는 아이템 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postItems.count
+        guard let count = CoreDataManager.shared.postitems?.count else {
+            print("0개")
+            return 0
+        }
+        print("1개 이상")
+        return count
     }
     
     // 각 콜렉션뷰 셀에 대한 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostCustomCollectionViewCell.self), for: indexPath) as! PostCustomCollectionViewCell
-        let Item = postItems[indexPath.item]
-        cell.profileLabel.text = Item.content
-        cell.profileImage.image = UIImage(named: postits.randomElement()!)
+        
+        guard let item = CoreDataManager.shared.postitems?.reversed()[indexPath.item] else { return UICollectionViewCell() }
+        
+//        cell.profileLabel.text = "뭐야"
+//        cell.profileImage.image = UIImage(named: "PostItGreen1")
+        
+        cell.profileLabel.text = item.value(forKey: "content") as? String
+        cell.profileImage.image = UIImage(named: (item.value(forKey: "color") as? String)!)
         return cell
     }
 }
 
 extension PostCollectionVC: UICollectionViewDelegate {
     
-}
-
-// Core Data
-extension PostCollectionVC {
-    func getAllItems() {
-        do {
-            postItems = try context.fetch(PostItem.fetchRequest())
-            DispatchQueue.main.async {
-                self.postCollectionView.reloadData()
-            }
-        }
-        catch {
-            // error
-        }
-    }
-    
-    func createItem(content: String, color: String) {
-        let newItem = PostItem(context: context)
-        newItem.content = content
-        newItem.date = Date()
-        newItem.color = color
-        
-        do {
-            try context.save()
-            getAllItems()
-        }
-        catch {
-            
-        }
-        
-    }
-    
-    func deleteItem(item: PostItem) {
-        context.delete(item)
-        
-        do {
-            try context.save()
-            getAllItems()
-        }
-        catch {
-            
-        }
-    }
-    
-    func upateItem(item: PostItem, newContent: String, newColor: String) {
-        
-        item.content = newContent
-        item.color = newColor
-        item.date = Date()
-        do {
-            try context.save()
-            getAllItems()
-        }
-        catch {
-            
-        }
-    }
 }

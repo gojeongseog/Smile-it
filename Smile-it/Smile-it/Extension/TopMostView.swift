@@ -37,13 +37,13 @@ extension UIViewController {
 
 // 최상단 뷰를 불러오기 위한 코드 2
 extension UIApplication {
-    func topMostViewController() -> UIViewController? {
+    func topMostViewController() -> BaseViewController? {
         let keyWindow = UIApplication.shared.connectedScenes
             .filter({$0.activationState == .foregroundActive})
             .compactMap({$0 as? UIWindowScene})
             .first?.windows
             .filter({$0.isKeyWindow}).first
         
-        return keyWindow?.rootViewController?.topMostViewController()
+        return keyWindow?.rootViewController?.topMostViewController() as? BaseViewController
     }
 }

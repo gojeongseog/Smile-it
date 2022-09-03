@@ -10,15 +10,12 @@ import UIKit
 class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .black
-        
+        view.backgroundColor = .systemBackground
         setupLayout()
         setupConstraints()
         setData()
-        
-        
     }
+    
     func setupLayout() {
         // Override Layout
     }
@@ -30,5 +27,17 @@ class BaseViewController: UIViewController {
     func setData() {
         // Override Set Data
     }
+}
+
+// MARK: - function
+
+extension BaseViewController {
     
+    // setup image
+//    func setupImage(imageName: String) -> UIImageView {
+//        let image = UIImageView()
+//        image.translatesAutoresizingMaskIntoConstraints = false
+//        image.image = UIImage(named: imageName)
+//        return image
+//    }
 }

@@ -19,6 +19,7 @@
 		D7571CA928C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571CA728C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift */; };
 		D7571CAB28C0E8DA005FAE0F /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571CAA28C0E8DA005FAE0F /* WriteDiaryVC.swift */; };
 		D7D8643928C23ACC00E055A1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8643828C23ACC00E055A1 /* BaseViewController.swift */; };
+		D7D8643B28C2579B00E055A1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8643A28C2579B00E055A1 /* CoreDataManager.swift */; };
 		D7F7056A28BF12B300847CD2 /* TopMostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7056928BF12B300847CD2 /* TopMostView.swift */; };
 		D7F7056C28BF806E00847CD2 /* PostCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */; };
 		D7F7056E28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */; };
@@ -39,6 +40,7 @@
 		D7571CA728C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D7571CAA28C0E8DA005FAE0F /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
 		D7D8643828C23ACC00E055A1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D7D8643A28C2579B00E055A1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D7F7056928BF12B300847CD2 /* TopMostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMostView.swift; sourceTree = "<group>"; };
 		D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCustomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -58,8 +60,6 @@
 		D7061E9F28BDE91900D3746A = {
 			isa = PBXGroup;
 			children = (
-				D7571CA628C0D2CF005FAE0F /* PostItem+CoreDataClass.swift */,
-				D7571CA728C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift */,
 				D7061EAA28BDE91900D3746A /* Smile-it */,
 				D7061EA928BDE91900D3746A /* Products */,
 			);
@@ -78,8 +78,9 @@
 			children = (
 				D7061EAB28BDE91900D3746A /* AppDelegate.swift */,
 				D7061EAD28BDE91900D3746A /* SceneDelegate.swift */,
-				D7571CA428C0D1F6005FAE0F /* Controller */,
+				D7632E3A28C3505600EE3581 /* Model */,
 				D7F7056F28BFA34A00847CD2 /* View */,
+				D7571CA428C0D1F6005FAE0F /* Controller */,
 				D7571CA528C0D265005FAE0F /* Extension */,
 				D7061EB728BDE91A00D3746A /* Assets.xcassets */,
 				D7061EB928BDE91A00D3746A /* LaunchScreen.storyboard */,
@@ -106,6 +107,16 @@
 				D7D8643828C23ACC00E055A1 /* BaseViewController.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D7632E3A28C3505600EE3581 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D7571CA628C0D2CF005FAE0F /* PostItem+CoreDataClass.swift */,
+				D7571CA728C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift */,
+				D7D8643A28C2579B00E055A1 /* CoreDataManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D7F7056F28BFA34A00847CD2 /* View */ = {
@@ -196,6 +207,7 @@
 				D7571CAB28C0E8DA005FAE0F /* WriteDiaryVC.swift in Sources */,
 				D7F7056E28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift in Sources */,
 				D7061EB028BDE91900D3746A /* PostCollectionVC.swift in Sources */,
+				D7D8643B28C2579B00E055A1 /* CoreDataManager.swift in Sources */,
 				D7061EAC28BDE91900D3746A /* AppDelegate.swift in Sources */,
 				D7571CA928C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift in Sources */,
 				D7061EAE28BDE91900D3746A /* SceneDelegate.swift in Sources */,
