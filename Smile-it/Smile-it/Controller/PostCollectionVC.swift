@@ -21,13 +21,7 @@ class PostCollectionVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("실행")
-//        CoreDataManager.shared.getItem()
-//        self.postCollectionView.reloadData()
-        
-        // 네비게이션 타이틀 이미지
-        let image = UIImage(named: "title")
-            navigationItem.titleView = UIImageView(image: image)
+        addNavBarImage()
     }
     
     override func setupLayout() {
@@ -46,9 +40,6 @@ class PostCollectionVC: BaseViewController {
         // 컬렉션뷰의 레이아웃 설정
         self.postCollectionView.collectionViewLayout = createCompositionalLayout()
     }
-    @IBAction func deleteButton(_ sender: UIButton) {
-        
-    }
     
     @IBAction func addButton(_ sender: UIButton) {
 //        CoreDataManager.shared.createItem(content: "안녕 테스트", color: "PostItBlue4")
@@ -57,6 +48,19 @@ class PostCollectionVC: BaseViewController {
         let writeDiaryVC = WriteDiaryVC()
         self.navigationController?.pushViewController(writeDiaryVC, animated: true)
     }
+    
+    func addNavBarImage() {
+            let navController = navigationController!
+            let image = UIImage(named: "title")
+            let imageView = UIImageView(image: image)
+            let bannerWidth = navController.navigationBar.frame.size.width
+            let bannerHeight = navController.navigationBar.frame.size.height
+            let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
+            let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
+            imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+            imageView.contentMode = .scaleAspectFit
+            navigationItem.titleView = imageView
+        }
 }
 
 extension PostCollectionVC {
