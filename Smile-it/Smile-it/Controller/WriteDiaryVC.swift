@@ -95,6 +95,13 @@ class WriteDiaryVC: BaseViewController {
     }
     
     @objc private func presedColorButton(_ sender: UIButton) {
+        yellowColorButton.setImage(UIImage(named: sender.tag == 0 ? "CCyellow" : "Cyellow") , for: .normal)
+        greenColorButton.setImage(UIImage(named: sender.tag == 1 ? "CCgreen" : "Cgreen") , for: .normal)
+        redColorButton.setImage(UIImage(named: sender.tag == 2 ? "CCred" : "Cred") , for: .normal)
+        blueColorButton.setImage(UIImage(named: sender.tag == 3 ? "CCblue" : "Cblue") , for: .normal)
+        
+        
+        
         switch sender.tag {
         case 0:
             self.postitImage.image = UIImage(named: "postitYellow1")
@@ -115,6 +122,7 @@ class WriteDiaryVC: BaseViewController {
     
     @objc private func postSave() {
         content = self.contentTextView.text
+        
         print(content)
         print(color)
         CoreDataManager.shared.createItem(content: content, color: color)
