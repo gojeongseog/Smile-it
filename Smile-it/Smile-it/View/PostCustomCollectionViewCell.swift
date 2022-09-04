@@ -12,6 +12,7 @@ class PostCustomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var removeBtn: UIButton!
     var isAnimate: Bool! = false
     
     // 애니메이션 시작
@@ -33,7 +34,7 @@ class PostCustomCollectionViewCell: UICollectionViewCell {
         
         let layer: CALayer = self.layer
         layer.add(shakeAnimation, forKey: "animate")
-//        self.myRemoveBtn.isHidden = false
+        self.removeBtn.isHidden = false
         isAnimate = true
     }
     
@@ -41,7 +42,7 @@ class PostCustomCollectionViewCell: UICollectionViewCell {
     func stopAnimate() {
         let layer: CALayer = self.layer
         layer.removeAnimation(forKey: "animte")
-//        self.myRemoveBtn.isHidden = true
+        self.removeBtn.isHidden = true
         isAnimate = true
     }
 }

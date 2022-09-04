@@ -43,10 +43,16 @@ class PostCollectionVC: BaseViewController {
     }
     
     @IBAction func addButton(_ sender: UIButton) {
-        CoreDataManager.shared.getItem()
-        postCollectionView.reloadData()
-        let writeDiaryVC = WriteDiaryVC()
-        self.navigationController?.pushViewController(writeDiaryVC, animated: true)
+        if longPressedEnabled {
+            // 롱프레스 활성상태 -> 비활성화 상태 버튼
+            longPressedEnabled = false
+            postCollectionView.reloadData()
+        } else {
+            // 롱프레스 비활성상태 -> 포스트잇 추가하기 버튼
+            let writeDiaryVC = WriteDiaryVC()
+            self.navigationController?.pushViewController(writeDiaryVC, animated: true)
+        }
+        
     }
     
     func addNavBarImage() {
@@ -115,10 +121,9 @@ extension PostCollectionVC: UICollectionViewDataSource {
     // 각 섹션에 들어가는 아이템 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let count = CoreDataManager.shared.postitems?.count else {
-            print("0개")
             return 0
         }
-        print("1개 이상")
+        print(count)
         return count
     }
     // 각 콜렉션뷰 셀에 대한 설정
@@ -126,6 +131,10 @@ extension PostCollectionVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PostCustomCollectionViewCell.self), for: indexPath) as! PostCustomCollectionViewCell
         
         guard let item = CoreDataManager.shared.postitems?.reversed()[indexPath.item] else { return UICollectionViewCell() }
+
+        cell.removeBtn.tag = indexPath.item
+        cell.removeBtn.addTarget(self, action: #selector(pressedRemoveBtn(_:)), for: .touchUpInside)
+        
         cell.profileLabel.text = item.value(forKey: "content") as? String
         cell.profileImage.image = UIImage(named: (item.value(forKey: "color") as? String)!)
         
@@ -136,6 +145,16 @@ extension PostCollectionVC: UICollectionViewDataSource {
             cell.stopAnimate()
         }
         return cell
+    }
+    
+    @objc func pressedRemoveBtn(_ sender: UIButton) {
+        if let item =
+            CoreDataManager.shared.postitems?.reversed()[sender.tag] {
+            AudioServicesPlaySystemSound(1520)
+            CoreDataManager.shared.deleteItem(object: item)
+            CoreDataManager.shared.getItem()
+        }
+        self.postCollectionView.reloadData()
     }
 }
 
