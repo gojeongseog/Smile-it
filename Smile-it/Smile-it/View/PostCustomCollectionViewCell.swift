@@ -12,19 +12,36 @@ class PostCustomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    var isAnimate: Bool! = false
     
-//    var imageName : String = "" {
-//        didSet {
-//            self.profileImage.image = UIImage(systemName: imageName)
-//            self.profileLabel.text = imageName
-//        }
-//    }
+    // 애니메이션 시작
+    func startAnimate() {
+        let shakeAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        shakeAnimation.duration = 0.05
+        shakeAnimation.repeatCount = 4
+        shakeAnimation.autoreverses = true
+        shakeAnimation.duration = 0.2
+        shakeAnimation.repeatCount = 9999
+        
+        let startAngle: Float = (-2) * 3.14159/180
+        let stopAngle = -startAngle
+        
+        shakeAnimation.fromValue = NSNumber(value: startAngle)
+        shakeAnimation.toValue = NSNumber(value: stopAngle)
+        shakeAnimation.autoreverses = true
+        shakeAnimation.timeOffset = 290 * drand48()
+        
+        let layer: CALayer = self.layer
+        layer.add(shakeAnimation, forKey: "animate")
+//        self.myRemoveBtn.isHidden = false
+        isAnimate = true
+    }
     
-//    override class func awakeFromNib() {
-//        super.awakeFromNib()
-//        self.contentView.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-//        self.contentView.layer.cornerRadius = 8
-//        self.contentView.layer.borderWidth = 1
-//        self.contentView.layer.borderColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-//    }
+    // 애니메이션 종료
+    func stopAnimate() {
+        let layer: CALayer = self.layer
+        layer.removeAnimation(forKey: "animte")
+//        self.myRemoveBtn.isHidden = true
+        isAnimate = true
+    }
 }

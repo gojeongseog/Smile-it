@@ -12,7 +12,8 @@ class WriteDiaryVC: BaseViewController {
     var content: String = ""
     var color: String = "postitYellow1"
     
-//    lazy var postitImage = setup
+
+    // 컬러 스택뷰
     let hStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,14 +23,14 @@ class WriteDiaryVC: BaseViewController {
         stackView.spacing = 10
         return stackView
     }()
-    
+    // 포스트잇 이미지뷰
     let postitImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "postitYellow4")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
-    
+    // 컨텐트 텍스트뷰
     let contentTextView: UITextView = {
         let text = UITextView()
         text.backgroundColor = .clear
@@ -38,6 +39,7 @@ class WriteDiaryVC: BaseViewController {
         return text
     }()
     
+    // 컬러 버튼
     lazy var yellowColorButton = setupColorButton(color: "Cyellow", tag: 0)
     lazy var greenColorButton = setupColorButton(color: "Cgreen", tag: 1)
     lazy var redColorButton = setupColorButton(color: "Cred", tag: 2)
@@ -46,6 +48,7 @@ class WriteDiaryVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(postSave))
 
     }
@@ -55,7 +58,6 @@ class WriteDiaryVC: BaseViewController {
         view.addSubview(hStackView)
         view.addSubview(postitImage)
         view.addSubview(contentTextView)
-        
         hStackView.addArrangedSubview(yellowColorButton)
         hStackView.addArrangedSubview(greenColorButton)
         hStackView.addArrangedSubview(redColorButton)
@@ -70,7 +72,6 @@ class WriteDiaryVC: BaseViewController {
             hStackView.heightAnchor.constraint(equalTo: yellowColorButton.widthAnchor),
             
             yellowColorButton.heightAnchor.constraint(equalTo: yellowColorButton.widthAnchor),
-//            yellowColorButton.widthAnchor.constraint(equalTo: hStackView.heightAnchor),
             
             contentTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             contentTextView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -84,6 +85,7 @@ class WriteDiaryVC: BaseViewController {
         ])
     }
 
+    // 컬러버튼 셋업
     func setupColorButton(color: String, tag: Int) -> UIButton {
         let button = UIButton()
         let image = UIImage(named: color)
@@ -95,13 +97,13 @@ class WriteDiaryVC: BaseViewController {
     }
     
     @objc private func presedColorButton(_ sender: UIButton) {
+        // 컬러 선택시 컬러 변경
         yellowColorButton.setImage(UIImage(named: sender.tag == 0 ? "CCyellow" : "Cyellow") , for: .normal)
         greenColorButton.setImage(UIImage(named: sender.tag == 1 ? "CCgreen" : "Cgreen") , for: .normal)
         redColorButton.setImage(UIImage(named: sender.tag == 2 ? "CCred" : "Cred") , for: .normal)
         blueColorButton.setImage(UIImage(named: sender.tag == 3 ? "CCblue" : "Cblue") , for: .normal)
         
-        
-        
+        // 컬러 선택시 포스트잇 컬러 변경
         switch sender.tag {
         case 0:
             self.postitImage.image = UIImage(named: "postitYellow1")
@@ -120,11 +122,9 @@ class WriteDiaryVC: BaseViewController {
         }
     }
     
+    // 포스트잇 저장
     @objc private func postSave() {
         content = self.contentTextView.text
-        
-        print(content)
-        print(color)
         CoreDataManager.shared.createItem(content: content, color: color)
         self.navigationController?.popViewController(animated: true)
     }
