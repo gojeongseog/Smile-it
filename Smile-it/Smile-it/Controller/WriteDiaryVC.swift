@@ -48,7 +48,17 @@ class WriteDiaryVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 네비게이션 바에 타이틀 추가
+        addNavBarImage()
         
+        // 등록 버튼
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus"), style: .plain, target: self, action: #selector(postSave))
+        
+        // 취소 버튼
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(postCancle))
+        
+        // 네비게이션바 버튼 컬러
+        navigationController?.navigationBar.tintColor = UIColor(named: "tintColor")
     }
     
     override func setupLayout() {
