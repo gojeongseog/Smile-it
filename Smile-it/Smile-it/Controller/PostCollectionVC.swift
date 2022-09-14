@@ -28,10 +28,6 @@ class PostCollectionVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
         addNavBarImage()
     }
     
@@ -67,20 +63,6 @@ class PostCollectionVC: BaseViewController {
         addbuttonImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         ])
     }
-    
-//    // 네비게이션 바에 이미지 추가
-//    func addNavBarImage() {
-//            let navController = navigationController!
-//            let image = UIImage(named: "title")
-//            let imageView = UIImageView(image: image)
-//            let bannerWidth = navController.navigationBar.frame.size.width
-//            let bannerHeight = navController.navigationBar.frame.size.height
-//            let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
-//            let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
-//            imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-//            imageView.contentMode = .scaleAspectFit
-//            navigationItem.titleView = imageView
-//        }
     
     @objc func pressedAddbutton(_ sender: UIGestureRecognizer) {
         if longPressedEnabled {
@@ -152,7 +134,6 @@ extension PostCollectionVC: UICollectionViewDataSource {
         guard let count = CoreDataManager.shared.postitems?.count else {
             return 0
         }
-        print(count)
         return count
     }
     // 각 콜렉션뷰 셀에 대한 설정
@@ -174,6 +155,17 @@ extension PostCollectionVC: UICollectionViewDataSource {
             cell.stopAnimate()
         }
         return cell
+    }
+    
+    // 셀 선택
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = CoreDataManager.shared.postitems?.reversed()[indexPath.item] else { fatalError("error") }
+        
+        print("셀 눌림")
+        let writeDiaryVC = WriteDiaryVC()
+        writeDiaryVC.color = item.value(forKey: "color") as! String
+        writeDiaryVC.postitEditorMode = .edit(indexPath)
+        self.navigationController?.pushViewController(writeDiaryVC, animated: true)
     }
     
     @objc func pressedRemoveBtn(_ sender: UIButton) {

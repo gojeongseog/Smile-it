@@ -50,6 +50,7 @@ class CoreDataManager {
         object.setValue(content, forKey: "content")
         object.setValue(color, forKey: "color")
         object.setValue(Date(), forKey: "date")
+        object.setValue(UUID(), forKey: "id")
         
         do {
             // managedContext 내부의 변경사항 저장
@@ -75,11 +76,11 @@ class CoreDataManager {
     }
     
     //데이터 업데이트
-    func updateitem(content: String, color: String) {
+    func updateitem(id: UUID, content: String, color: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "PostItem")
-//        fetchRequest.predicate = NSPredicate(format: "id = %@", id.uuidString)
+        fetchRequest.predicate = NSPredicate(format: "id = %@", id.uuidString)
         
         do {
             let result = try context.fetch(fetchRequest)

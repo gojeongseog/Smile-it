@@ -10,7 +10,7 @@
 import UIKit
 
 class TopMostView: UIViewController {
-    
+    // 현재 가장 상단의 뷰를 확인하여 어떤 뷰에서든 원하는 뷰를 호출하기 위함
 }
 
 // MARK: -topMostView

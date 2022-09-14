@@ -19,6 +19,7 @@ extension PostItem {
     @NSManaged public var content: String?
     @NSManaged public var color: String?
     @NSManaged public var date: Date?
+    @NSManaged public var id: UUID?
 
 }
 

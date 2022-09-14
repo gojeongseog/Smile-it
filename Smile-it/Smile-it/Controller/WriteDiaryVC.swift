@@ -7,10 +7,16 @@
 
 import UIKit
 
+enum PostitEditorMode {
+    case new
+    case edit(IndexPath)
+}
+
 class WriteDiaryVC: BaseViewController {
     
     var content: String = ""
     var color: String = "postitYellow1"
+    var postitEditorMode: PostitEditorMode = .new
     
 
     // 컬러 스택뷰
@@ -35,15 +41,21 @@ class WriteDiaryVC: BaseViewController {
         let text = UITextView()
         text.backgroundColor = .clear
         text.textColor = .black
+        text.font = .systemFont(ofSize: 30)
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
     
     // 컬러 버튼
-    lazy var yellowColorButton = setupColorButton(color: "CCyellow", tag: 0)
-    lazy var greenColorButton = setupColorButton(color: "Cgreen", tag: 1)
-    lazy var redColorButton = setupColorButton(color: "Cred", tag: 2)
-    lazy var blueColorButton = setupColorButton(color: "Cblue", tag: 3)
+//    lazy var yellowColorButton = setupColorButton(color: "CCyellow", tag: 0)
+//    lazy var greenColorButton = setupColorButton(color: "Cgreen", tag: 1)
+//    lazy var redColorButton = setupColorButton(color: "Cred", tag: 2)
+//    lazy var blueColorButton = setupColorButton(color: "Cblue", tag: 3)
+    
+    lazy var yellowColorButton = setupColorButton(color: color == "postitYellow1" ? "CCyellow" : "Cyellow", tag: 0)
+    lazy var greenColorButton = setupColorButton(color: color == "PostItGreen1" ? "CCgreen" : "Cgreen", tag: 1)
+    lazy var redColorButton = setupColorButton(color: color == "PostItRed1" ? "CCred" : "Cred", tag: 2)
+    lazy var blueColorButton = setupColorButton(color: color == "PostItBlue1" ? "CCblue" : "Cblue", tag: 3)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +104,17 @@ class WriteDiaryVC: BaseViewController {
             postitImage.heightAnchor.constraint(equalTo: view.widthAnchor, constant: -40)
         ])
     }
+    
+    override func setData() {
+        switch postitEditorMode {
+        case .new:
+            return
+        case .edit(let indexPath):
+            guard let item = CoreDataManager.shared.postitems?.reversed()[indexPath.item] else { fatalError("error") }
+            contentTextView.text = item.value(forKey: "content") as? String
+            postitImage.image = UIImage(named: (item.value(forKey: "color") as? String)!)
+        }
+    }
 
     // 컬러버튼 셋업
     func setupColorButton(color: String, tag: Int) -> UIButton {
@@ -132,9 +155,21 @@ class WriteDiaryVC: BaseViewController {
     
     // 포스트잇 저장
     @objc private func postSave() {
-        content = self.contentTextView.text
-        CoreDataManager.shared.createItem(content: content, color: color)
-        self.navigationController?.popViewController(animated: true)
+        
+        switch postitEditorMode {
+        case .new:
+            content = self.contentTextView.text
+            CoreDataManager.shared.createItem(content: content, color: color)
+            self.navigationController?.popViewController(animated: true)
+        case .edit(let indexPath):
+            guard let item = CoreDataManager.shared.postitems?.reversed()[indexPath.item] else { fatalError("error") }
+            let id = item.value(forKey: "id") as! UUID
+            content = self.contentTextView.text
+            CoreDataManager.shared.updateitem(id: id, content: content, color: color)
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        
     }
     
     // 포스트잇 작성 취소
