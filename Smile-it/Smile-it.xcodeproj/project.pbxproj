@@ -78,6 +78,7 @@
 			children = (
 				D7061EAB28BDE91900D3746A /* AppDelegate.swift */,
 				D7061EAD28BDE91900D3746A /* SceneDelegate.swift */,
+				D7632E6228D0A4F900EE3581 /* fonts */,
 				D7632E3A28C3505600EE3581 /* Model */,
 				D7F7056F28BFA34A00847CD2 /* View */,
 				D7571CA428C0D1F6005FAE0F /* Controller */,
@@ -117,6 +118,13 @@
 				D7D8643A28C2579B00E055A1 /* CoreDataManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D7632E6228D0A4F900EE3581 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		D7F7056F28BFA34A00847CD2 /* View */ = {

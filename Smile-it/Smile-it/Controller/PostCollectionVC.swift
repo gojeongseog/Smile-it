@@ -13,6 +13,14 @@ class PostCollectionVC: BaseViewController {
     @IBOutlet weak var postCollectionView: UICollectionView!
     private var longPressedEnabled: Bool = false
     
+    // 추가 / 완료 버튼 이미지뷰
+    let addbuttonImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "addButton")
+        return image
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         CoreDataManager.shared.getItem()
         self.postCollectionView.reloadData()
@@ -20,10 +28,19 @@ class PostCollectionVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
         addNavBarImage()
     }
     
     override func setupLayout() {
+        
+        // 추가/완료 버튼 설정
+        view.addSubview(addbuttonImage)
+        addbuttonImage.isUserInteractionEnabled = true
+        addbuttonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pressedAddbutton(_:))))
         
         // 콜렉션 뷰에 대한 설정
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_ :)))
@@ -42,34 +59,47 @@ class PostCollectionVC: BaseViewController {
         self.postCollectionView.collectionViewLayout = createCompositionalLayout()
     }
     
-    @IBAction func addButton(_ sender: UIButton) {
+    override func setupConstraints() {
+        NSLayoutConstraint.activate([
+        addbuttonImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        addbuttonImage.widthAnchor.constraint(equalToConstant: view.bounds.width / 5),
+        addbuttonImage.heightAnchor.constraint(equalToConstant: view.bounds.width / 5),
+        addbuttonImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
+        ])
+    }
+    
+//    // 네비게이션 바에 이미지 추가
+//    func addNavBarImage() {
+//            let navController = navigationController!
+//            let image = UIImage(named: "title")
+//            let imageView = UIImageView(image: image)
+//            let bannerWidth = navController.navigationBar.frame.size.width
+//            let bannerHeight = navController.navigationBar.frame.size.height
+//            let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
+//            let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
+//            imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+//            imageView.contentMode = .scaleAspectFit
+//            navigationItem.titleView = imageView
+//        }
+    
+    @objc func pressedAddbutton(_ sender: UIGestureRecognizer) {
         if longPressedEnabled {
             // 롱프레스 활성상태 -> 비활성화 상태 버튼
+            AudioServicesPlaySystemSound(1520)
+            addbuttonImage.image = UIImage(named: "addButton")
             longPressedEnabled = false
             postCollectionView.reloadData()
         } else {
             // 롱프레스 비활성상태 -> 포스트잇 추가하기 버튼
+            AudioServicesPlaySystemSound(1520)
             let writeDiaryVC = WriteDiaryVC()
             self.navigationController?.pushViewController(writeDiaryVC, animated: true)
         }
-        
     }
-    
-    func addNavBarImage() {
-            let navController = navigationController!
-            let image = UIImage(named: "title")
-            let imageView = UIImageView(image: image)
-            let bannerWidth = navController.navigationBar.frame.size.width
-            let bannerHeight = navController.navigationBar.frame.size.height
-            let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
-            let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
-            imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-            imageView.contentMode = .scaleAspectFit
-            navigationItem.titleView = imageView
-        }
     
     // 롱탭 제스쳐 했을때 함수
     @objc func longTap(_ gesture: UIGestureRecognizer) {
+        addbuttonImage.image = UIImage(named: "doneButton")
         switch(gesture.state) {
         case .began:
             guard let selectedIndexPath = postCollectionView.indexPathForItem(at: gesture.location(in: postCollectionView)) else { return }
@@ -79,7 +109,6 @@ class PostCollectionVC: BaseViewController {
             postCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
         case .ended:
             postCollectionView.endInteractiveMovement()
-//            doneBtn.isEnabled
             longPressedEnabled = true
             self.postCollectionView.reloadData()
         default:

@@ -26,7 +26,7 @@ class WriteDiaryVC: BaseViewController {
     // 포스트잇 이미지뷰
     let postitImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "postitYellow4")
+        image.image = UIImage(named: "postitYellow1")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -40,17 +40,15 @@ class WriteDiaryVC: BaseViewController {
     }()
     
     // 컬러 버튼
-    lazy var yellowColorButton = setupColorButton(color: "Cyellow", tag: 0)
+    lazy var yellowColorButton = setupColorButton(color: "CCyellow", tag: 0)
     lazy var greenColorButton = setupColorButton(color: "Cgreen", tag: 1)
     lazy var redColorButton = setupColorButton(color: "Cred", tag: 2)
     lazy var blueColorButton = setupColorButton(color: "Cblue", tag: 3)
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(postSave))
-
+        
     }
     
     override func setupLayout() {
@@ -126,6 +124,11 @@ class WriteDiaryVC: BaseViewController {
     @objc private func postSave() {
         content = self.contentTextView.text
         CoreDataManager.shared.createItem(content: content, color: color)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // 포스트잇 작성 취소
+    @objc private func postCancle() {
         self.navigationController?.popViewController(animated: true)
     }
 
