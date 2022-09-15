@@ -21,6 +21,9 @@ class CoreDataManager {
         
         // Entity의 fetchRequest 생성
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PostItem")
+        // 날짜 순으로 정렬
+        let sort = NSSortDescriptor(key: #keyPath(PostItem.date), ascending: true)
+            fetchRequest.sortDescriptors = [sort]
         
         do {
             // fetchRequest를 통해 managedContext로부터 결과 배열을 가져오기
@@ -81,6 +84,8 @@ class CoreDataManager {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "PostItem")
         fetchRequest.predicate = NSPredicate(format: "id = %@", id.uuidString)
+        
+        
         
         do {
             let result = try context.fetch(fetchRequest)

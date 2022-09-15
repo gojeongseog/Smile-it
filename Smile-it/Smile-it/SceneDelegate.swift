@@ -31,15 +31,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         
         // smileVC를 띄워주는 부분
-//        let smileVC = SmileVC()
-//        let topMostViewController = UIApplication.shared.topMostViewController()
-//
-//        if !(topMostViewController is SmileVC) {
-//            smileVC.modalPresentationStyle = .fullScreen
-//            topMostViewController?.present(smileVC, animated: false)
-//        } else {
-//
-//        }
+        let smileVC = SmileVC()
+        let topMostViewController = UIApplication.shared.topMostViewController()
+
+        if !(topMostViewController is SmileVC) {
+            smileVC.modalPresentationStyle = .fullScreen
+            topMostViewController?.present(smileVC, animated: false)
+        } else {
+
+        }
         
     }
     
