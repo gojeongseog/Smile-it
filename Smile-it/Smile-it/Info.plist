@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>UIAppFonts</key>
-	<array/>
+	<array>
+		<string>SSShinb7.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
