@@ -41,7 +41,8 @@ class WriteDiaryVC: BaseViewController {
         let text = UITextView()
         text.backgroundColor = .clear
         text.textColor = .black
-        text.font = .systemFont(ofSize: 30)
+        text.font = UIFont(name: "godoMaum", size: 30)
+//        text.font = .systemFont(ofSize: 30)
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -59,6 +60,8 @@ class WriteDiaryVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        title = "SMILE IT"
         
         // 네비게이션 바에 타이틀 추가
         addNavBarImage()
