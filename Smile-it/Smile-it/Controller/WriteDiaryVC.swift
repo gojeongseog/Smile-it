@@ -18,7 +18,7 @@ class WriteDiaryVC: BaseViewController {
     var color: String = "postitYellow1"
     var postitEditorMode: PostitEditorMode = .new
     
-
+    
     // 컬러 스택뷰
     let hStackView: UIStackView = {
         let stackView = UIStackView()
@@ -42,27 +42,20 @@ class WriteDiaryVC: BaseViewController {
         text.backgroundColor = .clear
         text.textColor = .black
         text.font = UIFont(name: "godoMaum", size: 30)
-//        text.font = .systemFont(ofSize: 30)
+        //        text.font = .systemFont(ofSize: 30)
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
     
     // 컬러 버튼
-//    lazy var yellowColorButton = setupColorButton(color: "CCyellow", tag: 0)
-//    lazy var greenColorButton = setupColorButton(color: "Cgreen", tag: 1)
-//    lazy var redColorButton = setupColorButton(color: "Cred", tag: 2)
-//    lazy var blueColorButton = setupColorButton(color: "Cblue", tag: 3)
-    
     lazy var yellowColorButton = setupColorButton(color: color == "postitYellow1" ? "CCyellow" : "Cyellow", tag: 0)
     lazy var greenColorButton = setupColorButton(color: color == "PostItGreen1" ? "CCgreen" : "Cgreen", tag: 1)
     lazy var redColorButton = setupColorButton(color: color == "PostItRed1" ? "CCred" : "Cred", tag: 2)
     lazy var blueColorButton = setupColorButton(color: color == "PostItBlue1" ? "CCblue" : "Cblue", tag: 3)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        title = "SMILE IT"
-        
+
         // 네비게이션 바에 타이틀 추가
         addNavBarImage()
         
@@ -89,7 +82,7 @@ class WriteDiaryVC: BaseViewController {
     
     override func setupConstraints() {
         NSLayoutConstraint.activate([
-            hStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            hStackView.bottomAnchor.constraint(equalTo: postitImage.topAnchor, constant: -10),
             hStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             hStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             hStackView.heightAnchor.constraint(equalTo: yellowColorButton.widthAnchor),
@@ -100,7 +93,7 @@ class WriteDiaryVC: BaseViewController {
             contentTextView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             contentTextView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -100),
             contentTextView.heightAnchor.constraint(equalTo: view.widthAnchor, constant: -100),
-        
+            
             postitImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             postitImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             postitImage.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -40),
@@ -118,7 +111,7 @@ class WriteDiaryVC: BaseViewController {
             postitImage.image = UIImage(named: (item.value(forKey: "color") as? String)!)
         }
     }
-
+    
     // 컬러버튼 셋업
     func setupColorButton(color: String, tag: Int) -> UIButton {
         let button = UIButton()
@@ -179,5 +172,5 @@ class WriteDiaryVC: BaseViewController {
     @objc private func postCancle() {
         self.navigationController?.popViewController(animated: true)
     }
-
+    
 }
