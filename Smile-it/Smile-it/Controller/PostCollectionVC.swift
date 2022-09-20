@@ -152,7 +152,7 @@ extension PostCollectionVC: UICollectionViewDataSource {
         cell.removeBtn.addTarget(self, action: #selector(pressedRemoveBtn(_:)), for: .touchUpInside)
         
         cell.profileLabel.text = item.value(forKey: "content") as? String
-        cell.profileLabel.font = UIFont(name: "godoMaum", size: 20)
+        cell.profileLabel.font = UIFont(name: "godoMaum", size: 30)
         cell.profileImage.image = UIImage(named: (item.value(forKey: "color") as? String)!)
         
         // 셀 애니메이션 시작 / 종료
