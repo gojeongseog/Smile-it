@@ -14,7 +14,7 @@ class SmileVC: BaseViewController {
     lazy var mouthImageView = setupImage(imageName: "LsmileMouth")
     lazy var leftEyeImageView = setupImage(imageName: "Lclose")
     lazy var rightEyeImageView = setupImage(imageName: "Rclose")
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,28 +86,20 @@ class SmileVC: BaseViewController {
             // 활짝 웃음
         case _ where smileValue > 0.5:
             // dismiss 될때 애니메이션 실행
-//            mouthImageView.image = UIImage(named: "HsmileMouth")
+                        mouthImageView.image = UIImage(named: "HsmileMouth")
             
-            UIView.animate(withDuration: 5.0, animations: {
-                
-                // 실행될 애니메이션
-                
-            }, completion: { finished in
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.modalTransitionStyle = .crossDissolve
-                    self.dismiss(animated: true)
-                })
-            })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            self.modalTransitionStyle = .crossDissolve
+                            self.dismiss(animated: true)
+            }
             
             // 웃음
         case _ where smileValue > 0.2:
             mouthImageView.image = UIImage(named: "MsmileMouth")
-//            print("웃음")
             
             // 안웃음
         default:
             mouthImageView.image = UIImage(named: "LsmileMouth")
-//            print("안웃음")
         }
     }
     
@@ -116,34 +108,28 @@ class SmileVC: BaseViewController {
             // 왼쪽 눈 뜸
         case _ where leftValue < 0.5:
             leftEyeImageView.image = UIImage(named: "Lopen")
-//            print("왼쪽 눈 뜸")
             
             // 왼쪽 눈 감음
         case _ where leftValue > 0.5:
             leftEyeImageView.image = UIImage(named: "Lclose")
-//            print("왼쪽 눈 감음")
             
             // 왼쪽눈 기본
         default:
             leftEyeImageView.image = UIImage(named: "Lclose")
-//            print("왼쪽눈 기본")
         }
         
         switch rightValue {
             // 오른쪽 눈 뜸
         case _ where rightValue < 0.5:
             rightEyeImageView.image = UIImage(named: "Ropen")
-//            print("오른쪽 눈 뜸")
             
             // 오른쪽 눈 감음
         case _ where rightValue > 0.5:
             rightEyeImageView.image = UIImage(named: "Rclose")
-//            print("오른쪽 눈 감음")
             
             // 오른쪽 눈 기본
         default:
             rightEyeImageView.image = UIImage(named: "Rclose")
-//            print("오른쪽 눈 기본")
         }
     }
 }
