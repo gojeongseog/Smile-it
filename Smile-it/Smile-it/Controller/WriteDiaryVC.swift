@@ -61,6 +61,7 @@ class WriteDiaryVC: BaseViewController {
         
         // 등록 버튼
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ok"), style: .plain, target: self, action: #selector(postSave))
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
         // 취소 버튼
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(postCancle))
@@ -78,6 +79,8 @@ class WriteDiaryVC: BaseViewController {
         hStackView.addArrangedSubview(greenColorButton)
         hStackView.addArrangedSubview(redColorButton)
         hStackView.addArrangedSubview(blueColorButton)
+        
+        contentTextView.delegate = self
     }
     
     override func setupConstraints() {
@@ -124,6 +127,18 @@ class WriteDiaryVC: BaseViewController {
     }
     
     @objc private func presedColorButton(_ sender: UIButton) {
+        // 편집모드에 컬러 변경시 수정 가능
+        switch postitEditorMode {
+        case .new:
+            if contentTextView.text == "" {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            } else {
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            }
+        case .edit:
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+        
         // 컬러 선택시 컬러 변경
         yellowColorButton.setImage(UIImage(named: sender.tag == 0 ? "CCyellow" : "Cyellow") , for: .normal)
         greenColorButton.setImage(UIImage(named: sender.tag == 1 ? "CCgreen" : "Cgreen") , for: .normal)
@@ -173,4 +188,16 @@ class WriteDiaryVC: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+}
+
+extension WriteDiaryVC: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        print("textView text is change")
+        if textView.text == "" {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+    }
 }
