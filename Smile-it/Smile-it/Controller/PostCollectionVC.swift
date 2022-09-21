@@ -13,14 +13,6 @@ class PostCollectionVC: BaseViewController {
     @IBOutlet weak var postCollectionView: UICollectionView!
     private var longPressedEnabled: Bool = false
     
-    // 추가 / 완료 버튼 이미지뷰
-    let addbuttonImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "addButton")
-        return image
-    }()
-    
     override func viewWillAppear(_ animated: Bool) {
         for fontFamily in UIFont.familyNames {
             for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
@@ -34,24 +26,21 @@ class PostCollectionVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         addNavBarImage()
         
         // 추가 or 완료 버튼
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus"), style: .plain, target: self, action: #selector(pressedAddbutton(_:)))
         
-        // SmileVC 버튼
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+        // 버튼
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "smile"), style: .plain, target: self, action: nil)
         
         // 네비게이션바 버튼 컬러
         navigationController?.navigationBar.tintColor = UIColor(named: "tintColor")
     }
     
     override func setupLayout() {
-        
-        // 추가/완료 버튼 설정
-        view.addSubview(addbuttonImage)
-        addbuttonImage.isUserInteractionEnabled = true
-        addbuttonImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pressedAddbutton(_:))))
         
         // 콜렉션 뷰에 대한 설정
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_ :)))
@@ -70,13 +59,10 @@ class PostCollectionVC: BaseViewController {
         self.postCollectionView.collectionViewLayout = createCompositionalLayout()
     }
     
-    override func setupConstraints() {
-        NSLayoutConstraint.activate([
-        addbuttonImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        addbuttonImage.widthAnchor.constraint(equalToConstant: view.bounds.width / 5),
-        addbuttonImage.heightAnchor.constraint(equalToConstant: view.bounds.width / 5),
-        addbuttonImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
-        ])
+    @objc func pressedSmilebutton(_sender: UIGestureRecognizer) {
+        let smileVC = SmileVC()
+        smileVC.modalPresentationStyle = .fullScreen
+        present(smileVC, animated: false)
     }
     
     @objc func pressedAddbutton(_ sender: UIGestureRecognizer) {
@@ -84,7 +70,6 @@ class PostCollectionVC: BaseViewController {
             // 롱프레스 활성상태 -> 비활성화 상태 버튼
             AudioServicesPlaySystemSound(1520)
             navigationItem.rightBarButtonItem?.image = UIImage(named: "plus")
-//            addbuttonImage.image = UIImage(named: "addButton")
             longPressedEnabled = false
             postCollectionView.reloadData()
         } else {
@@ -98,7 +83,6 @@ class PostCollectionVC: BaseViewController {
     // 롱탭 제스쳐 했을때 함수
     @objc func longTap(_ gesture: UIGestureRecognizer) {
         navigationItem.rightBarButtonItem?.image = UIImage(named: "ok")
-        addbuttonImage.image = UIImage(named: "doneButton")
         switch(gesture.state) {
         case .began:
             guard let selectedIndexPath = postCollectionView.indexPathForItem(at: gesture.location(in: postCollectionView)) else { return }

@@ -60,7 +60,7 @@ class WriteDiaryVC: BaseViewController {
         addNavBarImage()
         
         // 등록 버튼
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus"), style: .plain, target: self, action: #selector(postSave))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ok"), style: .plain, target: self, action: #selector(postSave))
         
         // 취소 버튼
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(postCancle))
