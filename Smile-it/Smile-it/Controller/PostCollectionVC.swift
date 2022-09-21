@@ -35,6 +35,15 @@ class PostCollectionVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addNavBarImage()
+        
+        // 추가 or 완료 버튼
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "plus"), style: .plain, target: self, action: #selector(pressedAddbutton(_:)))
+        
+        // SmileVC 버튼
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
+        
+        // 네비게이션바 버튼 컬러
+        navigationController?.navigationBar.tintColor = UIColor(named: "tintColor")
     }
     
     override func setupLayout() {
@@ -74,7 +83,8 @@ class PostCollectionVC: BaseViewController {
         if longPressedEnabled {
             // 롱프레스 활성상태 -> 비활성화 상태 버튼
             AudioServicesPlaySystemSound(1520)
-            addbuttonImage.image = UIImage(named: "addButton")
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "plus")
+//            addbuttonImage.image = UIImage(named: "addButton")
             longPressedEnabled = false
             postCollectionView.reloadData()
         } else {
@@ -87,6 +97,7 @@ class PostCollectionVC: BaseViewController {
     
     // 롱탭 제스쳐 했을때 함수
     @objc func longTap(_ gesture: UIGestureRecognizer) {
+        navigationItem.rightBarButtonItem?.image = UIImage(named: "ok")
         addbuttonImage.image = UIImage(named: "doneButton")
         switch(gesture.state) {
         case .began:
