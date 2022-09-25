@@ -374,7 +374,7 @@
 				DEVELOPMENT_TEAM = S2A2JAHX9A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Smile-it/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사용자의 표정을 확인하기 위해 카메라 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -406,7 +406,7 @@
 				DEVELOPMENT_TEAM = S2A2JAHX9A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Smile-it/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사용자의 표정을 확인하기 위해 카메라 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
