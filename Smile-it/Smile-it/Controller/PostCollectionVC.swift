@@ -14,11 +14,6 @@ class PostCollectionVC: BaseViewController {
     private var longPressedEnabled: Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
-        for fontFamily in UIFont.familyNames {
-            for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
-                print(fontName)
-            }
-        }
         
         CoreDataManager.shared.getItem()
         self.postCollectionView.reloadData()

@@ -35,8 +35,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let topMostViewController = UIApplication.shared.topMostViewController()
 
         if !(topMostViewController is SmileVC) {
-            smileVC.modalPresentationStyle = .fullScreen
-            topMostViewController?.present(smileVC, animated: false)
+            let defaults = UserDefaults.standard
+                    if defaults.object(forKey: "isFirstTime") == nil {
+                        // 처음 실행 o
+                        print("처음 실행 o")
+                        defaults.set("No", forKey:"isFirstTime")
+                        let onboardingController = OnboardingController()
+                        topMostViewController?.present(onboardingController, animated: false)
+                    } else {
+                        // 처음 실행 x
+                        print("처음 실행 x")
+                        smileVC.modalPresentationStyle = .fullScreen
+                        topMostViewController?.present(smileVC, animated: false)
+                    }
+            
         } else {
 
         }

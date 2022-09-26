@@ -15,7 +15,6 @@ class SmileVC: BaseViewController {
     lazy var leftEyeImageView = setupImage(imageName: "Lclose")
     lazy var rightEyeImageView = setupImage(imageName: "Rclose")
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +23,7 @@ class SmileVC: BaseViewController {
             // AR face tracking 지원 불가시 에러 / 종료
             fatalError("이 기기에서는 AR face tracking 지원 불가")
         }
+        
         
         // 카메라 권한 요청
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { granted in

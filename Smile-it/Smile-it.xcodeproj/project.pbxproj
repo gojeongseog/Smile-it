@@ -15,6 +15,8 @@
 		D7061EB828BDE91A00D3746A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7061EB728BDE91A00D3746A /* Assets.xcassets */; };
 		D7061EBB28BDE91A00D3746A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7061EB928BDE91A00D3746A /* LaunchScreen.storyboard */; };
 		D7061F1928BDFBC600D3746A /* SmileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7061F1828BDFBC600D3746A /* SmileVC.swift */; };
+		D73F7D2128E1C73B00A49A4E /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73F7D2028E1C73B00A49A4E /* OnboardingController.swift */; };
+		D73F7D2328E1CA7400A49A4E /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73F7D2228E1CA7400A49A4E /* OnboardingViewController.swift */; };
 		D7571CA828C0D2CF005FAE0F /* PostItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571CA628C0D2CF005FAE0F /* PostItem+CoreDataClass.swift */; };
 		D7571CA928C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571CA728C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift */; };
 		D7571CAB28C0E8DA005FAE0F /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7571CAA28C0E8DA005FAE0F /* WriteDiaryVC.swift */; };
@@ -37,6 +39,8 @@
 		D7061EBA28BDE91A00D3746A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7061EBC28BDE91A00D3746A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7061F1828BDFBC600D3746A /* SmileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileVC.swift; sourceTree = "<group>"; };
+		D73F7D2028E1C73B00A49A4E /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
+		D73F7D2228E1CA7400A49A4E /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		D7571CA628C0D2CF005FAE0F /* PostItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D7571CA728C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D7571CAA28C0E8DA005FAE0F /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
@@ -92,6 +96,15 @@
 			path = "Smile-it";
 			sourceTree = "<group>";
 		};
+		D73F7D1F28E1C6FD00A49A4E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D73F7D2028E1C73B00A49A4E /* OnboardingController.swift */,
+				D73F7D2228E1CA7400A49A4E /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		D7571CA428C0D1F6005FAE0F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +146,7 @@
 		D7F7056F28BFA34A00847CD2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D73F7D1F28E1C6FD00A49A4E /* Onboarding */,
 				D7061EB128BDE91900D3746A /* Main.storyboard */,
 				D7F7056B28BF806E00847CD2 /* PostCustomCollectionViewCell.xib */,
 				D7F7056D28BF8D1700847CD2 /* PostCustomCollectionViewCell.swift */,
@@ -224,6 +238,8 @@
 				D7571CA928C0D2CF005FAE0F /* PostItem+CoreDataProperties.swift in Sources */,
 				D7061EAE28BDE91900D3746A /* SceneDelegate.swift in Sources */,
 				D7061F1928BDFBC600D3746A /* SmileVC.swift in Sources */,
+				D73F7D2328E1CA7400A49A4E /* OnboardingViewController.swift in Sources */,
+				D73F7D2128E1C73B00A49A4E /* OnboardingController.swift in Sources */,
 				D7061EB628BDE91900D3746A /* Smile_it.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
