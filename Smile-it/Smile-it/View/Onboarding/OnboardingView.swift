@@ -74,11 +74,16 @@ extension OnboardingView {
         let page4 = OnboardingViewController(imageName: "on4",
                                              titleText: "네번째!",
                                              subtitleText: "좀 더 활짝 웃어보기.\n환하게 웃었다면 잠금화면이 풀립니다.")
+        
+        let page5 = OnboardingViewController(imageName: "on5",
+                                             titleText: "마지막!",
+                                             subtitleText: "우측 상단 +버튼을 터치하여 메모를 추가합니다.\n메모를 길게 터치하여 삭제 가능합니다.")
         pages.append(page0)
         pages.append(page1)
         pages.append(page2)
         pages.append(page3)
         pages.append(page4)
+        pages.append(page5)
         
         setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
         navigationController?.setNavigationBarHidden(true, animated: true)
