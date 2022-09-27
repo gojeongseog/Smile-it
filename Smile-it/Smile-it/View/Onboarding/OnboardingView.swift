@@ -8,7 +8,6 @@
 import UIKit
 
 class OnboardingView: UIPageViewController {
-    
     var pages = [UIViewController]()
     
     // external controls
@@ -56,22 +55,26 @@ extension OnboardingView {
         
         startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         
+        let page0 = OnboardingViewController(imageName: "on0",
+                                             titleText: "사용 설명!",
+                                             subtitleText: "Smile-it은 스마일과 포스트잇을\n합친 이름으로 웃으면서 사용하는 메모 앱입니다.\n간단한 사용 방법을 확인 후 이용해 보세요.")
+        
         let page1 = OnboardingViewController(imageName: "on1",
                                              titleText: "첫번째!",
-                                             subtitleText: "카메라의 정면을 응시해 주세요.\n표정을 확인하기 위해\n 카메라 권한이 필요합니다.\n")
+                                             subtitleText: "카메라의 정면 응시하기.\n표정을 확인하기 위해\n카메라 권한이 필요합니다.\n")
         
         let page2 = OnboardingViewController(imageName: "on2",
                                              titleText: "두번째!",
-                                             subtitleText: "눈을 깜빡여 보세요.\n캐릭터가 함께 눈을 깜빡이는지 확인해 보세요.")
+                                             subtitleText: "눈을 깜빡여 보기.\n사용자를 따라 눈을 깜빡입니다.\n사용자의 표정을 포착하지 못하거나\n주변 환경이 어둡다면\n활성화 되지 않습니다.")
         
         let page3 = OnboardingViewController(imageName: "on3",
                                              titleText: "세번째!",
-                                             subtitleText: "미소를 지어보세요.\n캐릭터가 함께 미소를 짓는지 확인해 보세요.")
+                                             subtitleText: "미소 지어보기.\n캐릭터가 사용자를 따라 미소를 짓습니다.")
         
         let page4 = OnboardingViewController(imageName: "on4",
                                              titleText: "네번째!",
-                                             subtitleText: "좀더 환하게 웃어보세요.\n환하게 웃었다면 메인 화면으로 넘어갑니다.")
-        
+                                             subtitleText: "좀 더 활짝 웃어보기.\n환하게 웃었다면 메인 화면으로 넘어갑니다.\n메인 화면 오른쪽 위의 +버튼을 터치하여\n 새로운 메모를 작성할 수 있으며\n 메모를 꾹 눌러 삭제할 수 있습니다.")
+        pages.append(page0)
         pages.append(page1)
         pages.append(page2)
         pages.append(page3)
@@ -120,7 +123,6 @@ extension OnboardingView: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
-        
         if currentIndex == 0 {
             return nil
         } else {
@@ -176,8 +178,10 @@ extension OnboardingView {
     }
     
     @objc func startButtonTapped() {
-//        UserDefaults.standard.set(true, forKey: "oldUser")
+        let defaults = UserDefaults.standard
+        defaults.set("No", forKey:"isFirstTime")
         let smileVC = SmileVC()
+        smileVC.modalPresentationStyle = .fullScreen
         guard let pvc = self.presentingViewController else { return }
         dismiss(animated: false)
         pvc.present(smileVC, animated: true)

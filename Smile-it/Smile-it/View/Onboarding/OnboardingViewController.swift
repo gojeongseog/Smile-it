@@ -49,7 +49,7 @@ extension OnboardingViewController {
         subtitleLabel.textColor = UIColor.systemGray
         subtitleLabel.setLineSpacing(spacing: 6)
         subtitleLabel.textAlignment = .center
-        subtitleLabel.numberOfLines = 3
+        subtitleLabel.numberOfLines = 0
     }
     
     func layout() {

@@ -39,9 +39,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     if defaults.object(forKey: "isFirstTime") == nil {
                         // 처음 실행 o
                         print("처음 실행 o")
-                        defaults.set("No", forKey:"isFirstTime")
-                        let onboardingController = OnboardingView()
-                        topMostViewController?.present(onboardingController, animated: false)
+                        let onboardingView = OnboardingView(transitionStyle: .scroll, navigationOrientation: .horizontal)
+                        onboardingView.modalPresentationStyle = .fullScreen
+                        topMostViewController?.present(onboardingView, animated: false)
                     } else {
                         // 처음 실행 x
                         print("처음 실행 x")
