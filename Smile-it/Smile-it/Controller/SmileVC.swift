@@ -34,7 +34,19 @@ class SmileVC: BaseViewController {
                 }
             } else {
                 // 접근 거부된 경우
-                fatalError("카메라 접근 거부")
+//                fatalError("카메라 접근 거부")
+                let alert = UIAlertController(title: "Smile-it을 사용하기 위해서는 카메라의 권한이 필요합니다.", message: "표정을 확인하기 위해 권한이 필요합니다. 카메라를 통한 정보는 전송되거나 저장되지 않습니다.", preferredStyle: .alert)
+//                let cancle = UIAlertAction(title: "취소", style: .cancel)
+                let setting = UIAlertAction(title: "설정", style: .default, handler: {_ in
+                    print("설정")
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                })
+//                alert.addAction(cancle)
+                alert.addAction(setting)
+                self.present(alert, animated: true)
+                
+                
+                
             }
         }
     }

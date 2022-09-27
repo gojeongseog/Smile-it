@@ -167,7 +167,9 @@ extension OnboardingController {
     @objc func startButtonTapped() {
 //        UserDefaults.standard.set(true, forKey: "oldUser")
         let smileVC = SmileVC()
+        guard let pvc = self.presentingViewController else { return }
         dismiss(animated: false)
+        pvc.present(smileVC, animated: true)
     }
 }
 
