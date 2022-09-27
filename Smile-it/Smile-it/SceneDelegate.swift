@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         // 처음 실행 o
                         print("처음 실행 o")
                         defaults.set("No", forKey:"isFirstTime")
-                        let onboardingController = OnboardingController()
+                        let onboardingController = OnboardingView()
                         topMostViewController?.present(onboardingController, animated: false)
                     } else {
                         // 처음 실행 x

@@ -28,6 +28,8 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+        
+        
     }
 }
 
@@ -36,13 +38,17 @@ extension OnboardingViewController {
     func style() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont(name: "godoMaum", size: 24)
+        
+        titleLabel.font = UIFont(name: "godoMaum", size: 40)
+        titleLabel.textColor = UIColor.label
+        
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.font = UIFont(name: "godoMaum", size: 18)
+        subtitleLabel.font = UIFont(name: "godoMaum", size: 30)
         subtitleLabel.textColor = UIColor.systemGray
-        subtitleLabel.textAlignment = .center
         subtitleLabel.setLineSpacing(spacing: 6)
+        subtitleLabel.textAlignment = .center
         subtitleLabel.numberOfLines = 3
     }
     

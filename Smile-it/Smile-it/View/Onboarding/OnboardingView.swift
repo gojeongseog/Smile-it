@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingController: UIPageViewController {
+class OnboardingView: UIPageViewController {
     
     var pages = [UIViewController]()
     
@@ -18,11 +18,11 @@ class OnboardingController: UIPageViewController {
     let startButton: UIButton = {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(named: "tintColor")
         button.layer.cornerRadius = 14
         button.clipsToBounds = true
         button.setTitle("시작 하기", for: .normal)
-//        button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+        // 버튼 타이틀 폰트 바꾸기 추가해야 함
         return button
     }()
     
@@ -41,11 +41,12 @@ class OnboardingController: UIPageViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         // 다시 실행 되지 않도록 UserDefaults 설정 하기
     }
 }
 
-extension OnboardingController {
+extension OnboardingView {
     // 온보딩 페이지 설정
     func setup() {
         dataSource = self
@@ -55,20 +56,28 @@ extension OnboardingController {
         
         startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         
-        let page1 = OnboardingViewController(imageName: "첫번째이미지", titleText: "첫번째텍스트", subtitleText: "첫번째서브텍스트")
+        let page1 = OnboardingViewController(imageName: "on1",
+                                             titleText: "첫번째!",
+                                             subtitleText: "카메라의 정면을 응시해 주세요.\n표정을 확인하기 위해\n 카메라 권한이 필요합니다.\n")
         
-        let page2 = OnboardingViewController(imageName: "두번째이미지", titleText: "두번째텍스트", subtitleText: "두번째텍스트")
+        let page2 = OnboardingViewController(imageName: "on2",
+                                             titleText: "두번째!",
+                                             subtitleText: "눈을 깜빡여 보세요.\n캐릭터가 함께 눈을 깜빡이는지 확인해 보세요.")
         
-        let page3 = OnboardingViewController(imageName: "두번째이미지", titleText: "세번째텍스트", subtitleText: "세번째텍스트")
+        let page3 = OnboardingViewController(imageName: "on3",
+                                             titleText: "세번째!",
+                                             subtitleText: "미소를 지어보세요.\n캐릭터가 함께 미소를 짓는지 확인해 보세요.")
         
-        let page4 = OnboardingViewController(imageName: "두번째이미지", titleText: "네번째텍스트", subtitleText: "네번째텍스트")
+        let page4 = OnboardingViewController(imageName: "on4",
+                                             titleText: "네번째!",
+                                             subtitleText: "좀더 환하게 웃어보세요.\n환하게 웃었다면 메인 화면으로 넘어갑니다.")
         
         pages.append(page1)
         pages.append(page2)
         pages.append(page3)
         pages.append(page4)
         
-        setViewControllers([pages[initialPage]], direction: .forward, animated: true)
+        setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -106,7 +115,7 @@ extension OnboardingController {
 
 // MARK: - DataSource
 
-extension OnboardingController: UIPageViewControllerDataSource {
+extension OnboardingView: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
@@ -133,7 +142,7 @@ extension OnboardingController: UIPageViewControllerDataSource {
 
 // MARK: - Delegates
 
-extension OnboardingController: UIPageViewControllerDelegate {
+extension OnboardingView: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
@@ -151,11 +160,13 @@ extension OnboardingController: UIPageViewControllerDelegate {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
+    
+    
 }
 
 // MARK: - Actions
 
-extension OnboardingController {
+extension OnboardingView {
 
     @objc func pageControlTapped(_ sender: UIPageControl) {
         setViewControllers([pages[sender.currentPage]], direction: .forward, animated: true, completion: nil)
@@ -182,6 +193,8 @@ extension UIPageViewController {
         guard let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage) else { return }
         
         setViewControllers([nextPage], direction: .forward, animated: animated, completion: completion)
+        
+        
     }
     
     func goToPreviousPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
