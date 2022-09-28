@@ -57,7 +57,7 @@ extension OnboardingView {
         
         let page0 = OnboardingViewController(imageName: "on0",
                                              titleText: "사용 설명!",
-                                             subtitleText: "Smile-it사용법 알아보기.\n사용자가 웃으면 잠금 화면이 풀립니다.\n간단한 사용 방법 확인 후 이용해 보세요.")
+                                             subtitleText: "Smile-it사용법 알아보기.\n사용자가 웃으면 잠금 화면이 풀립니다.\n간단한 사용 법을 확인 후 이용해 보세요.")
         
         let page1 = OnboardingViewController(imageName: "on1",
                                              titleText: "첫번째!",
